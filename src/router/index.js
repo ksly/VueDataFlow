@@ -62,7 +62,7 @@ export const constantRoutes = [
       {
         path: 'index',
         name: 'New-Job',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/grapheditor/index'),
         meta: { title: 'New Job', icon: 'form' }
       }
     ]
