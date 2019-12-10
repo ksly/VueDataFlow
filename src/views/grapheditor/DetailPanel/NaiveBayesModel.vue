@@ -1,24 +1,33 @@
 <template>
   <div :data-clazz="model.clazz">
-    <div class="panelTitle">{{ i18n['receiveTask'] }}</div>
+    <div class="panelTitle">{{ i18n['naiveBayesModel'] }}</div>
     <div class="panelBody">
       <DefaultDetail :model="model" :on-change="onChange" :read-only="readOnly" />
       <div class="panelRow">
-        <div>{{ i18n['receiveTask.waitState'] }}：</div>
+        <div>{{ i18n['naiveBayes.label'] }}：</div>
         <el-input
           style="width:90%; font-size:12px"
           :disabled="readOnly"
-          :value="model.waitState"
-          @input="(value) => {onChange('waitState', value)}"
+          :value="model.label"
+          @input="(value) => {onChange('label', value)}"
         />
       </div>
       <div class="panelRow">
-        <div>{{ i18n['receiveTask.stateValue'] }}：</div>
+        <div>{{ i18n['naiveBayes.smoothing'] }}：</div>
         <el-input
           style="width:90%; font-size:12px"
           :disabled="readOnly"
-          :value="model.stateValue"
-          @input="(value) => {onChange('stateValue', value)}"
+          :value="model.smoothing"
+          @input="(value) => {onChange('smoothing', value)}"
+        />
+      </div>
+      <div class="panelRow">
+        <div>{{ i18n['naiveBayes.type'] }}：</div>
+        <el-input
+          style="width:90%; font-size:12px"
+          :disabled="readOnly"
+          :value="model.type"
+          @input="(value) => {onChange('type', value)}"
         />
       </div>
     </div>

@@ -1,15 +1,15 @@
 <template>
   <div :data-clazz="model.clazz">
-    <div class="panelTitle">{{ '节点信息' }}</div>
+    <div class="panelTitle">{{ i18n['decisionTreeModel'] }}</div>
     <div class="panelBody">
       <DefaultDetail :model="model" :on-change="onChange" :read-only="readOnly" />
       <div class="panelRow">
-        <div>{{ 'ColumnName' }}：</div>
+        <div>{{ 'LabelColumn' }}：</div>
         <el-input
           style="width:90%; font-size:12px"
           :disabled="readOnly"
-          :value="model.columnName"
-          @input="(value) => {onChange('columnName', value)}"
+          :value="model.labelColumn"
+          @input="(value) => {onChange('labelColumn', value)}"
         />
       </div>
     </div>

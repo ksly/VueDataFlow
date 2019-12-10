@@ -1,87 +1,183 @@
 <template>
-    <div class="itemPanel" :style="{'height': height+'px'}">
-        <el-collapse v-model="activeNames" >
-            <el-collapse-item :title="i18n['start']" name="1">
-                <img data-item="{clazz:'start',size:'30*30',label:''}"
-                     :src="require('../../assets/flow/start.svg')" style="width:42px;height:42px" />
-                <div>{{i18n['startEvent']}}</div>
-                <img data-item="{clazz:'timerStart',size:'30*30',label:''}"
-                     :src="require('../../assets/flow/timer-start.svg')" style="width:42px;height:42px" />
-                <div>{{i18n['timerEvent']}}</div>
-                <img data-item="{clazz:'messageStart',size:'30*30',label:''}"
-                     :src="require('../../assets/flow/message-start.svg')" style="width:42px;height:42px" />
-                <div>{{i18n['messageEvent']}}</div>
-                <img data-item="{clazz:'signalStart',size:'30*30',label:''}"
-                     :src="require('../../assets/flow/signal-start.svg')" style="width:42px;height:42px" />
-                <div>{{i18n['signalEvent']}}</div>
-            </el-collapse-item>
-            <el-collapse-item :title="i18n['operator']" name="2">
-                <img :data-item="userTaskData"
-                     :src="require('../../assets/flow/user-task.svg')" style="width:80px;height:44px" />
-                <div>{{i18n['userTask']}}</div>
-                <img :data-item="scriptTaskData"
-                     :src="require('../../assets/flow/script-task.svg')" style="width:80px;height:44px" />
-                <div>{{i18n['scriptTask']}}</div>
-                <img :data-item="javaTaskData"
-                     :src="require('../../assets/flow/java-task.svg')" style="width:80px;height:44px" />
-                <div>{{i18n['javaTask']}}</div>
-                <img :data-item="mailTaskData"
-                     :src="require('../../assets/flow/mail-task.svg')" style="width:80px;height:44px" />
-                <div>{{i18n['mailTask']}}</div>
-                <img :data-item="receiveTaskData"
-                     :src="require('../../assets/flow/receive-task.svg')" style="width:80px;height:44px" />
-                <div>{{i18n['receiveTask']}}</div>
-            </el-collapse-item>
-<!--            <el-collapse-item :title="i18n['gateway']" name="3">-->
-<!--                <img data-item="{clazz:'exclusiveGateway',size:'40*40',label:''}"-->
-<!--                     :src="require('../../assets/flow/exclusive-gateway.svg')" style="width:48px;height:48px" />-->
-<!--                <div>{{i18n['exclusiveGateway']}}</div>-->
-<!--                <img data-item="{clazz:'parallelGateway',size:'40*40',label:''}"-->
-<!--                     :src="require('../../assets/flow/parallel-gateway.svg')" style="width:48px;height:48px" />-->
-<!--                <div>{{i18n['parallelGateway']}}</div>-->
-<!--                <img data-item="{clazz:'inclusiveGateway',size:'40*40',label:''}"-->
-<!--                     :src="require('../../assets/flow/inclusive-gateway.svg')" style="width:48px;height:48px" />-->
-<!--                <div>{{i18n['inclusiveGateway']}}</div>-->
-<!--            </el-collapse-item>-->
-<!--            <el-collapse-item :title="i18n['catch']" name="4">-->
-<!--                <img data-item="{clazz:'timerCatch',size:'50*30',label:''}"-->
-<!--                     :src="require('../../assets/flow/timer-catch.svg')" style="width:58px;height:38px" />-->
-<!--                <div>{{i18n['timerEvent']}}</div>-->
-<!--                <img data-item="{clazz:'messageCatch',size:'50*30',label:''}"-->
-<!--                     :src="require('../../assets/flow/message-catch.svg')" style="width:58px;height:38px" />-->
-<!--                <div>{{i18n['messageEvent']}}</div>-->
-<!--                <img data-item="{clazz:'signalCatch',size:'50*30',label:''}"-->
-<!--                     :src="require('../../assets/flow/signal-catch.svg')" style="width:58px;height:38px" />-->
-<!--                <div>{{i18n['signalEvent']}}</div>-->
-<!--            </el-collapse-item>-->
-            <el-collapse-item :title="i18n['end']" name="5">
-                <img data-item="{clazz:'end',size:'30*30',label:''}"
-                     :src="require('../../assets/flow/end.svg')" style="width:42px;height:42px" />
-                <div>{{i18n['endEvent']}}</div>
-            </el-collapse-item>
-        </el-collapse>
-    </div>
+  <div class="itemPanel" :style="{'height': height+'px'}">
+    <el-collapse v-model="activeNames">
+      <el-collapse-item :title="i18n['start']" name="1">
+        <img
+          data-item="{clazz:'start',size:'30*30',label:''}"
+          :src="require('../../assets/flow/start.svg')"
+          style="width:42px;height:42px"
+        >
+        <div>{{ i18n['startEvent'] }}</div>
+        <img
+          data-item="{clazz:'timerStart',size:'30*30',label:''}"
+          :src="require('../../assets/flow/timer-start.svg')"
+          style="width:42px;height:42px"
+        >
+        <div>{{ i18n['timerEvent'] }}</div>
+        <img
+          data-item="{clazz:'messageStart',size:'30*30',label:''}"
+          :src="require('../../assets/flow/message-start.svg')"
+          style="width:42px;height:42px"
+        >
+        <div>{{ i18n['messageEvent'] }}</div>
+        <img
+          data-item="{clazz:'signalStart',size:'30*30',label:''}"
+          :src="require('../../assets/flow/signal-start.svg')"
+          style="width:42px;height:42px"
+        >
+        <div>{{ i18n['signalEvent'] }}</div>
+      </el-collapse-item>
+      <el-collapse-item :title="i18n['classify']" name="2">
+        <img
+          :data-item="decisionTreeModel"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['decisionTreeModel'] }}</div>
+        <img
+          :data-item="decisionTreePredict"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['decisionTreePredict'] }}</div>
+        <img
+          :data-item="naiveBayesModel"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['naiveBayesModel'] }}</div>
+        <img
+          :data-item="naiveBayesPredict"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['naiveBayesPredict'] }}</div>
+        <img
+          :data-item="randomForestModel"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['randomForestModel'] }}</div>
+        <img
+          :data-item="randomForestPredict"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['randomForestPredict'] }}</div>
+      </el-collapse-item>
+      <el-collapse-item :title="i18n['regression']" name="3">
+        <img
+          :data-item="linearRegressionModel"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['linearRegressionModel'] }}</div>
+        <img
+          :data-item="linearRegressionPredict"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['linearRegressionPredict'] }}</div>
+        <img
+          :data-item="logisticRegressionModel"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['logisticRegressionModel'] }}</div>
+        <img
+          :data-item="logisticRegressionPredict"
+          :src="require('../../assets/flow/script-task.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['logisticRegressionPredict'] }}</div>
+      </el-collapse-item>
+      <el-collapse-item :title="i18n['aggregation']" name="4">
+        <img
+          :data-item="count"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['count'] }}</div>
+        <img
+          :data-item="max"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['max'] }}</div>
+        <img
+          :data-item="min"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['min'] }}</div>
+        <img
+          :data-item="sum"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['sum'] }}</div>
+        <img
+          :data-item="union"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['union'] }}</div>
+        <img
+          :data-item="avg"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['avg'] }}</div>
+        <img
+          :data-item="countDistinct"
+          :src="require('../../assets/flow/aggregation.svg')"
+          style="width:80px;height:44px"
+        >
+        <div>{{ i18n['countDistinct'] }}</div>
+      </el-collapse-item>
+      <el-collapse-item :title="i18n['end']" name="5">
+        <img
+          data-item="{clazz:'end',size:'30*30',label:''}"
+          :src="require('../../assets/flow/end.svg')"
+          style="width:42px;height:42px"
+        >
+        <div>{{ i18n['endEvent'] }}</div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
 </template>
 <script>
-  export default {
-    inject: ['i18n'],
-    props: {
-      height: {
-        type: Number,
-        default: 800,
-      },
-    },
-    data() {
-      return {
-        activeNames: [],
-        userTaskData: "{clazz:'userTask',size:'80*44',label:'"+this.i18n['userTask']+"'}",
-        scriptTaskData: "{clazz:'scriptTask',size:'80*44',label:'"+this.i18n['scriptTask']+"'}",
-        javaTaskData: "{clazz:'javaTask',size:'80*44',label:'"+this.i18n['javaTask']+"'}",
-        mailTaskData: "{clazz:'mailTask',size:'80*44',label:'"+this.i18n['mailTask']+"'}",
-        receiveTaskData: "{clazz:'receiveTask',size:'80*44',label:'"+this.i18n['receiveTask']+"'}",
-      };
-    },
+export default {
+  inject: ['i18n'],
+  props: {
+    height: {
+      type: Number,
+      default: 800
+    }
+  },
+  data() {
+    return {
+      activeNames: [],
+      decisionTreeModel: "{clazz:'decisionTreeModel',size:'150*44',label:'decisionTreeModel'}",
+      decisionTreePredict: "{clazz:'decisionTreePredict',size:'150*44',label:'decisionTreePredict'}",
+      naiveBayesModel: "{clazz:'naiveBayesModel',size:'150*44',label:'naiveBayesModel'}",
+      naiveBayesPredict: "{clazz:'naiveBayesPredict',size:'150*44',label:'naiveBayesPredict'}",
+      randomForestModel: "{clazz:'randomForestModel',size:'150*44',label:'randomForestModel'}",
+      randomForestPredict: "{clazz:'randomForestPredict',size:'150*44',label:'randomForestPredict'}",
+      linearRegressionModel: "{clazz:'linearRegressionModel',size:'150*44',label:'linearRegressionModel'}",
+      linearRegressionPredict: "{clazz:'linearRegressionPredict',size:'150*44',label:'linearRegressionPredict'}",
+      logisticRegressionModel: "{clazz:'logisticRegressionModel',size:'150*44',label:'logisticRegressionModel'}",
+      logisticRegressionPredict: "{clazz:'logisticRegressionPredict',size:'150*44',label:'logisticRegressionPredict'}",
+      count: "{clazz:'count',size:'80*44',label:'count'}",
+      max: "{clazz:'max',size:'80*44',label:'max'}",
+      min: "{clazz:'min',size:'80*44',label:'min'}",
+      sum: "{clazz:'sum',size:'80*44',label:'sum'}",
+      union: "{clazz:'union',size:'80*44',label:'union'}",
+      avg: "{clazz:'avg',size:'80*44',label:'avg'}",
+      countDistinct: "{clazz:'countDistinct',size:'80*44',label:'countDistinct'}"
+    }
   }
+}
 </script>
 
 <style lang="scss" >

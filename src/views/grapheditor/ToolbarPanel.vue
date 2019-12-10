@@ -26,6 +26,11 @@
         <span class="iconfont icon-delete-o" />
       </span>
     </el-tooltip>
+    <el-tooltip :content="this.i18n['tooltip.clear']" placement="bottom">
+      <span class="command" data-command="clear">
+        <svg-icon icon-class="clear" />
+      </span>
+    </el-tooltip>
     <span class="separator" />
     <el-tooltip :content="this.i18n['tooltip.zoomIn']" placement="bottom">
       <span class="command" data-command="zoomIn">

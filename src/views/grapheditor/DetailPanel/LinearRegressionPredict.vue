@@ -1,17 +1,8 @@
 <template>
   <div :data-clazz="model.clazz">
-    <div class="panelTitle">{{ '节点信息' }}</div>
+    <div class="panelTitle">{{ i18n['linearRegressionPredict'] }}</div>
     <div class="panelBody">
       <DefaultDetail :model="model" :on-change="onChange" :read-only="readOnly" />
-      <div class="panelRow">
-        <div>{{ 'ColumnName' }}：</div>
-        <el-input
-          style="width:90%; font-size:12px"
-          :disabled="readOnly"
-          :value="model.columnName"
-          @input="(value) => {onChange('columnName', value)}"
-        />
-      </div>
     </div>
   </div>
 </template>

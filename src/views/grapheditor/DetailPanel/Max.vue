@@ -1,24 +1,31 @@
 <template>
   <div :data-clazz="model.clazz">
-    <div class="panelTitle">{{ i18n['receiveTask'] }}</div>
+    <div class="panelTitle">{{ i18n['max'] }}</div>
     <div class="panelBody">
       <DefaultDetail :model="model" :on-change="onChange" :read-only="readOnly" />
       <div class="panelRow">
-        <div>{{ i18n['receiveTask.waitState'] }}：</div>
+        <div>{{ i18n['column'] }}：</div>
         <el-input
           style="width:90%; font-size:12px"
           :disabled="readOnly"
-          :value="model.waitState"
-          @input="(value) => {onChange('waitState', value)}"
+          :value="model.column"
+          @input="(value) => {onChange('column', value)}"
         />
       </div>
       <div class="panelRow">
-        <div>{{ i18n['receiveTask.stateValue'] }}：</div>
+        <el-checkbox
+          :disabled="readOnly"
+          :value="!!model.needGroupBy"
+          @change="(value) => onChange('needGroupBy', value)"
+        >{{ i18n['needGroupBy'] }}</el-checkbox>
+      </div>
+      <div class="panelRow">
+        <div>{{ i18n['groupByColumn'] }}：</div>
         <el-input
           style="width:90%; font-size:12px"
           :disabled="readOnly"
-          :value="model.stateValue"
-          @input="(value) => {onChange('stateValue', value)}"
+          :value="model.groupByColumn"
+          @input="(value) => {onChange('groupByColumn', value)}"
         />
       </div>
     </div>
