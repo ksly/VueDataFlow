@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@antv/g6": "^3.2.4",
-    "axios": "0.18.1",
+    "axios": "1.6.0",
     "core-js": "^3.4.7",
     "element-ui": "2.7.2",
     "normalize.css": "7.0.0",
